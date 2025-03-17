@@ -7,7 +7,6 @@
     <style>
         body {
             font-family: 'Garamond', serif;
-            text-align: center;
             padding: 0;
             margin: 0;
             background-color: #f9f9f9;
@@ -22,7 +21,7 @@
         }
         .header-text {
             text-align: left;
-            max-width: 50%;
+            flex: 1;
             padding-left: 5%;
         }
         .header h1 {
@@ -44,13 +43,19 @@
             height: auto;
             border-radius: 10px;
         }
+        .content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 50px;
+        }
         .form-section {
             background: rgba(255, 255, 255, 0.9);
             padding: 40px;
             border-radius: 10px;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
             max-width: 600px;
-            margin: auto;
+            flex: 1;
         }
         input, select, button, textarea {
             width: 100%;
@@ -79,22 +84,24 @@
         </div>
     </div>
     
-    <div class="form-section">
-        <h2>Merci de nous indiquer votre présence</h2>
-        <form id="rsvpForm">
-            <input type="text" id="name" placeholder="Nom(s) et Prénom(s)" required>
-            <input type="number" id="guests" placeholder="Nombre de personnes (1 ou 2)" min="1" max="2" required>
-            <input type="email" id="email" placeholder="Adresse email (optionnel)">
-            <input type="tel" id="phone" placeholder="Numéro de téléphone (optionnel)">
-            <select id="invitationType">
-                <option value="vin-honneur">Vin d'honneur uniquement</option>
-                <option value="diner">Cocktail + Dîner</option>
-                <option value="brunch">Cocktail + Dîner + Brunch</option>
-            </select>
-            <div id="responseOptions"></div>
-            <textarea id="comments" placeholder="Remarques (allergies, précisions)"></textarea>
-            <button type="submit">Envoyer</button>
-        </form>
+    <div class="content">
+        <div class="form-section">
+            <h2>Merci de nous indiquer votre présence</h2>
+            <form id="rsvpForm">
+                <input type="text" id="name" placeholder="Nom(s) et Prénom(s)" required>
+                <input type="number" id="guests" placeholder="Nombre de personnes (1 ou 2)" min="1" max="2" required>
+                <input type="email" id="email" placeholder="Adresse email (optionnel)">
+                <input type="tel" id="phone" placeholder="Numéro de téléphone (optionnel)">
+                <select id="invitationType">
+                    <option value="vin-honneur">Vin d'honneur uniquement</option>
+                    <option value="diner">Cocktail + Dîner</option>
+                    <option value="brunch">Cocktail + Dîner + Brunch</option>
+                </select>
+                <div id="responseOptions"></div>
+                <textarea id="comments" placeholder="Remarques (allergies, précisions)"></textarea>
+                <button type="submit">Envoyer</button>
+            </form>
+        </div>
     </div>
 
     <script>
