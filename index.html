@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RSVP - Mariage</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+            background-color: #f9f9f9;
+            background-image: url('1C062C97-0E35-401B-80F7-DF04855A6DA6_1_105_c.jpeg');
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        .container {
+            max-width: 500px;
+            margin: auto;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        input, select, button {
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Réponse au Mariage</h2>
+        <p>Merci de nous indiquer votre présence</p>
+        
+        <form id="rsvpForm">
+            <input type="text" id="name" placeholder="Nom et Prénom" required>
+            <select id="invitationType">
+                <option value="vin-honneur">Vin d'honneur uniquement</option>
+                <option value="diner">Cocktail + Dîner</option>
+                <option value="brunch">Cocktail + Dîner + Brunch</option>
+            </select>
+            <div id="responseOptions"></div>
+            <textarea id="comments" placeholder="Remarques (allergies, précisions)"></textarea>
+            <button type="submit">Envoyer</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('invitationType').addEventListener('change', function() {
+            const responseOptions = document.getElementById('responseOptions');
+            responseOptions.innerHTML = "";
+            if (this.value === 'vin-honneur') {
+                responseOptions.innerHTML = `
+                    <label><input type="radio" name="response" value="oui"> Oui, je viens</label>
+                    <label><input type="radio" name="response" value="non"> Non, je ne viens pas</label>
+                `;
+            } else if (this.value === 'diner') {
+                responseOptions.innerHTML = `
+                    <label><input type="radio" name="response" value="oui"> Oui, je viens au dîner</label>
+                    <label><input type="radio" name="response" value="non"> Non, je ne viens pas</label>
+                `;
+            } else if (this.value === 'brunch') {
+                responseOptions.innerHTML = `
+                    <label><input type="radio" name="response" value="diner-brunch"> Oui, dîner + brunch</label>
+                    <label><input type="radio" name="response" value="diner"> Oui, dîner uniquement</label>
+                    <label><input type="radio" name="response" value="non"> Non, je ne viens pas</label>
+                `;
+            }
+        });
+
+        document.getElementById('rsvpForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const name = document.getElementById('name').value;
+            const invitationType = document.getElementById('invitationType').value;
+            const response = document.querySelector('input[name="response"]:checked')?.value || '';
+            const comments = document.getElementById('comments').value;
+            
+            fetch('https://script.google.com/macros/s/YOUR_GOOGLE_SCRIPT_ID/exec', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: new URLSearchParams({ name, invitationType, response, comments })
+            })
+            .then(response => response.text())
+            .then(data => alert("Votre réponse a bien été envoyée !"))
+            .catch(error => alert("Erreur lors de l'envoi."));
+        });
+    </script>
+</body>
+</html>
