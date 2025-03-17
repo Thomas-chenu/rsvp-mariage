@@ -79,34 +79,47 @@
             responseOptions.innerHTML = "";
             if (this.value === 'vin-honneur') {
                 responseOptions.innerHTML = `
-                    <label><input type="radio" name="response" value="oui"> Oui, je viens</label>
-                    <label><input type="radio" name="response" value="non"> Non, je ne viens pas</label>
+                    <label><input type="checkbox" name="response" value="cocktail"> Cocktail</label>
+                    <label><input type="checkbox" name="response" value="absent" class="absent"> Absent</label>
                 `;
             } else if (this.value === 'diner') {
                 responseOptions.innerHTML = `
-                    <label><input type="radio" name="response" value="oui"> Oui, je viens au dîner</label>
-                    <label><input type="radio" name="response" value="non"> Non, je ne viens pas</label>
+                    <label><input type="checkbox" name="response" value="cocktail"> Cocktail</label>
+                    <label><input type="checkbox" name="response" value="diner"> Dîner</label>
+                    <label><input type="checkbox" name="response" value="absent" class="absent"> Absent</label>
                 `;
             } else if (this.value === 'brunch') {
                 responseOptions.innerHTML = `
-                    <label><input type="radio" name="response" value="diner-brunch"> Oui, dîner + brunch</label>
-                    <label><input type="radio" name="response" value="diner"> Oui, dîner uniquement</label>
-                    <label><input type="radio" name="response" value="non"> Non, je ne viens pas</label>
+                    <label><input type="checkbox" name="response" value="cocktail"> Cocktail</label>
+                    <label><input type="checkbox" name="response" value="diner"> Dîner</label>
+                    <label><input type="checkbox" name="response" value="brunch"> Brunch</label>
+                    <label><input type="checkbox" name="response" value="absent" class="absent"> Absent</label>
                 `;
             }
+            document.querySelectorAll(".absent").forEach(absentCheckbox => {
+                absentCheckbox.addEventListener("change", function() {
+                    if (this.checked) {
+                        document.querySelectorAll("input[name='response']").forEach(cb => {
+                            if (cb !== this) cb.checked = false;
+                        });
+                    }
+                });
+            });
         });
 
         document.getElementById('rsvpForm').addEventListener('submit', function(event) {
             event.preventDefault();
             const name = document.getElementById('name').value;
             const invitationType = document.getElementById('invitationType').value;
-            const response = document.querySelector('input[name="response"]:checked')?.value || '';
+            const responses = Array.from(document.querySelectorAll("input[name='response']:checked"))
+                .map(cb => cb.value)
+                .join(", ");
             const comments = document.getElementById('comments').value;
             
             fetch('https://script.google.com/macros/s/YOUR_GOOGLE_SCRIPT_ID/exec', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: new URLSearchParams({ name, invitationType, response, comments })
+                body: new URLSearchParams({ name, invitationType, responses, comments })
             })
             .then(response => response.text())
             .then(data => alert("Votre réponse a bien été envoyée !"))
