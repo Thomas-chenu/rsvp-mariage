@@ -14,26 +14,35 @@
             color: #2F4F4F;
         }
         .header {
-            position: relative;
-            width: 100%;
-            height: 100vh;
             display: flex;
             align-items: center;
             justify-content: space-between;
             padding: 50px;
-            background: url('1C062C97-0E35-401B-80F7-DF04855A6DA6_1_105_c.jpeg') center/cover fixed;
-            color: white;
+            height: 90vh;
         }
         .header-text {
             text-align: left;
             max-width: 50%;
+            padding-left: 5%;
         }
         .header h1 {
-            font-size: 3em;
+            font-size: 4em;
             margin-bottom: 10px;
         }
         .header h3 {
             font-size: 1.5em;
+            margin: 5px 0;
+        }
+        .image-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .image-container img {
+            width: 90%;
+            height: auto;
+            border-radius: 10px;
         }
         .form-section {
             background: rgba(255, 255, 255, 0.9);
@@ -42,7 +51,6 @@
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
             max-width: 600px;
             margin: auto;
-            margin-top: -50px;
         }
         input, select, button, textarea {
             width: 100%;
@@ -63,7 +71,11 @@
     <div class="header">
         <div class="header-text">
             <h1>Ségolène & Thomas</h1>
-            <h3>16 Août 2025 - Fontainebleau, France</h3>
+            <h3>Samedi, 16 août 2025</h3>
+            <h3>Mas d'Arvieux, Tarascon</h3>
+        </div>
+        <div class="image-container">
+            <img src="1C062C97-0E35-401B-80F7-DF04855A6DA6_1_105_c.jpeg" alt="Photo du couple">
         </div>
     </div>
     
@@ -108,40 +120,6 @@
                     <label><input type="checkbox" name="response" value="absent" class="absent"> Absent</label>
                 `;
             }
-            document.querySelectorAll(".absent").forEach(absentCheckbox => {
-                absentCheckbox.addEventListener("change", function() {
-                    if (this.checked) {
-                        document.querySelectorAll(".response-option").forEach(cb => cb.checked = false);
-                    }
-                });
-            });
-            document.querySelectorAll(".response-option").forEach(optionCheckbox => {
-                optionCheckbox.addEventListener("change", function() {
-                    document.querySelectorAll(".absent").forEach(absentCheckbox => absentCheckbox.checked = false);
-                });
-            });
-        });
-
-        document.getElementById('rsvpForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            const name = document.getElementById('name').value;
-            const guests = document.getElementById('guests').value;
-            const email = document.getElementById('email').value;
-            const phone = document.getElementById('phone').value;
-            const invitationType = document.getElementById('invitationType').value;
-            const responses = Array.from(document.querySelectorAll("input[name='response']:checked"))
-                .map(cb => cb.value)
-                .join(", ");
-            const comments = document.getElementById('comments').value;
-            
-            fetch('https://script.google.com/macros/s/YOUR_GOOGLE_SCRIPT_ID/exec', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: new URLSearchParams({ name, guests, email, phone, invitationType, responses, comments })
-            })
-            .then(response => response.text())
-            .then(data => alert("Votre réponse a bien été envoyée !"))
-            .catch(error => alert("Erreur lors de l'envoi."));
         });
     </script>
 </body>
