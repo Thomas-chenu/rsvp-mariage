@@ -10,18 +10,31 @@
             text-align: center;
             padding: 20px;
             background-color: #f9f9f9;
-            background-image: url('1C062C97-0E35-401B-80F7-DF04855A6DA6_1_105_c.jpeg');
-            background-size: contain;
-            background-position: center;
-            background-repeat: no-repeat;
         }
         .container {
-            max-width: 500px;
+            display: flex;
+            max-width: 900px;
             margin: auto;
             background: rgba(255, 255, 255, 0.8);
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            align-items: center;
+        }
+        .form-container {
+            flex: 1;
+            padding: 20px;
+        }
+        .image-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
         }
         input, select, button {
             width: 100%;
@@ -40,20 +53,24 @@
 </head>
 <body>
     <div class="container">
-        <h2>Réponse au Mariage</h2>
-        <p>Merci de nous indiquer votre présence</p>
-        
-        <form id="rsvpForm">
-            <input type="text" id="name" placeholder="Nom et Prénom" required>
-            <select id="invitationType">
-                <option value="vin-honneur">Vin d'honneur uniquement</option>
-                <option value="diner">Cocktail + Dîner</option>
-                <option value="brunch">Cocktail + Dîner + Brunch</option>
-            </select>
-            <div id="responseOptions"></div>
-            <textarea id="comments" placeholder="Remarques (allergies, précisions)"></textarea>
-            <button type="submit">Envoyer</button>
-        </form>
+        <div class="form-container">
+            <h2>Réponse au Mariage</h2>
+            <p>Merci de nous indiquer votre présence</p>
+            <form id="rsvpForm">
+                <input type="text" id="name" placeholder="Nom et Prénom" required>
+                <select id="invitationType">
+                    <option value="vin-honneur">Vin d'honneur uniquement</option>
+                    <option value="diner">Cocktail + Dîner</option>
+                    <option value="brunch">Cocktail + Dîner + Brunch</option>
+                </select>
+                <div id="responseOptions"></div>
+                <textarea id="comments" placeholder="Remarques (allergies, précisions)"></textarea>
+                <button type="submit">Envoyer</button>
+            </form>
+        </div>
+        <div class="image-container">
+            <img src="1C062C97-0E35-401B-80F7-DF04855A6DA6_1_105_c.jpeg" alt="Photo du couple">
+        </div>
     </div>
 
     <script>
