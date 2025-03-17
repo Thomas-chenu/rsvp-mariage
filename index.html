@@ -6,16 +6,17 @@
     <title>RSVP - Mariage</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Garamond', serif;
             text-align: center;
             padding: 20px;
             background-color: #f9f9f9;
+            color: #2F4F4F;
         }
         .container {
             display: flex;
             max-width: 900px;
             margin: auto;
-            background: rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.9);
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
@@ -40,11 +41,11 @@
             width: 100%;
             margin: 10px 0;
             padding: 10px;
-            border: 1px solid #ccc;
+            border: 1px solid #2F4F4F;
             border-radius: 5px;
         }
         button {
-            background-color: #007BFF;
+            background-color: #2F4F4F;
             color: white;
             border: none;
             cursor: pointer;
@@ -54,10 +55,14 @@
 <body>
     <div class="container">
         <div class="form-container">
-            <h2>Réponse au Mariage</h2>
+            <h1>Ségolène & Thomas</h1>
+            <h3>16 Août 2025</h3>
             <p>Merci de nous indiquer votre présence</p>
             <form id="rsvpForm">
-                <input type="text" id="name" placeholder="Nom et Prénom" required>
+                <input type="text" id="name" placeholder="Nom(s) et Prénom(s)" required>
+                <input type="number" id="guests" placeholder="Nombre de personnes (1 ou 2)" min="1" max="2" required>
+                <input type="email" id="email" placeholder="Adresse email (optionnel)">
+                <input type="tel" id="phone" placeholder="Numéro de téléphone (optionnel)">
                 <select id="invitationType">
                     <option value="vin-honneur">Vin d'honneur uniquement</option>
                     <option value="diner">Cocktail + Dîner</option>
@@ -113,6 +118,9 @@
         document.getElementById('rsvpForm').addEventListener('submit', function(event) {
             event.preventDefault();
             const name = document.getElementById('name').value;
+            const guests = document.getElementById('guests').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
             const invitationType = document.getElementById('invitationType').value;
             const responses = Array.from(document.querySelectorAll("input[name='response']:checked"))
                 .map(cb => cb.value)
@@ -122,7 +130,7 @@
             fetch('https://script.google.com/macros/s/YOUR_GOOGLE_SCRIPT_ID/exec', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: new URLSearchParams({ name, invitationType, responses, comments })
+                body: new URLSearchParams({ name, guests, email, phone, invitationType, responses, comments })
             })
             .then(response => response.text())
             .then(data => alert("Votre réponse a bien été envoyée !"))
