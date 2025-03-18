@@ -260,12 +260,12 @@
       e.preventDefault(); // Empêche l'envoi classique et le rechargement de la page
 
       // Option 1 : Simple fenêtre d'alerte
-      // alert("Merci ! Votre réponse a bien été envoyée.");
+      alert("Merci ! Votre réponse a bien été envoyée.");
 
       // Option 2 : Remplacer le contenu du formulaire par un message
-      document.querySelector('.form-section').innerHTML = `
-        <h2>Merci, votre réponse a bien été envoyée !</h2>
-        <p>Nous avons hâte de vous voir !</p>
+      // document.querySelector('.form-section').innerHTML = `
+      //  <h2>Merci, votre réponse a bien été envoyée !</h2>
+      //  <p>Nous avons hâte de vous voir !</p>
       `;
     });
   </script>
