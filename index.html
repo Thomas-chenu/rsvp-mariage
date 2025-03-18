@@ -180,7 +180,7 @@ input[type="checkbox"]:checked::before {
                 <div style="display: flex; flex-direction: column; gap: 5px;">
                     <label style="display: flex; align-items: center;"><input type="checkbox" name="response" value="cocktail" class="response-option" style="margin-right: 10px;"> Cocktail</label>
                     <label style="display: flex; align-items: center;"><input type="checkbox" name="response" value="diner" class="response-option" style="margin-right: 10px;"> Dîner</label>
-                    <label style="display: flex; flex-direction: column; align-items: center;"><input type="checkbox" name="response" value="brunch" class="response-option" style="margin-right: 10px;"> Brunch</label>
+                    <label style="display: flex; align-items: center;"><input type="checkbox" name="response" value="brunch" class="response-option" style="margin-right: 10px;"> Brunch</label>
                     <label style="display: flex; align-items: center;"><input type="checkbox" name="response" value="absent" class="absent" style="margin-right: 10px;"> Absent</label>
                 </div>
             `;
@@ -199,54 +199,6 @@ input[type="checkbox"]:checked::before {
                 document.querySelectorAll(".absent").forEach(absentCheckbox => absentCheckbox.checked = false);
             });
         });
-    });
-</script>
-        });
-        
-        document.querySelectorAll(".response-option").forEach(optionCheckbox => {
-            optionCheckbox.addEventListener("change", function() {
-                document.querySelectorAll(".absent").forEach(absentCheckbox => absentCheckbox.checked = false);
-            });
-        });
-    });
-</script>
-});
-
-document.querySelectorAll(".response-option").forEach(optionCheckbox => {
-    optionCheckbox.addEventListener("change", function() {
-        document.querySelectorAll(".absent").forEach(absentCheckbox => absentCheckbox.checked = false);
-    });
-});
-        });
-
-        document.querySelectorAll(".response-option").forEach(optionCheckbox => {
-            optionCheckbox.addEventListener("change", function() {
-                document.querySelectorAll(".absent").forEach(absentCheckbox => absentCheckbox.checked = false);
-            });
-        });
-    });
-    document.getElementById('invitationType').addEventListener('change', function() {
-        const responseOptions = document.getElementById('responseOptions');
-        responseOptions.innerHTML = "";
-        if (this.value === 'vin-honneur') {
-            responseOptions.innerHTML = `
-                <label><input type="checkbox" name="response" value="cocktail" class="response-option"> Cocktail</label>
-                <label><input type="checkbox" name="response" value="absent" class="absent"> Absent</label>
-            `;
-        } else if (this.value === 'diner') {
-            responseOptions.innerHTML = `
-                <label><input type="checkbox" name="response" value="cocktail" class="response-option"> Cocktail</label>
-                <label><input type="checkbox" name="response" value="diner" class="response-option"> Dîner</label>
-                <label><input type="checkbox" name="response" value="absent" class="absent"> Absent</label>
-            `;
-        } else if (this.value === 'brunch') {
-            responseOptions.innerHTML = `
-                <label><input type="checkbox" name="response" value="cocktail" class="response-option"> Cocktail</label>
-                <label><input type="checkbox" name="response" value="diner" class="response-option"> Dîner</label>
-                <label><input type="checkbox" name="response" value="brunch" class="response-option"> Brunch</label>
-                <label><input type="checkbox" name="response" value="absent" class="absent"> Absent</label>
-            `;
-        }
     });
 </script>
                     </select>
