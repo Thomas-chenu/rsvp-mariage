@@ -256,18 +256,42 @@
     });
 
     // Lorsque le formulaire est soumis, afficher un message de remerciement
-    document.getElementById('rsvpForm').addEventListener('submit', function(e) {
-      e.preventDefault(); // Empêche l'envoi classique et le rechargement de la page
+   <script>
+  document.getElementById('rsvpForm').addEventListener('submit', function(e) {
+    e.preventDefault(); // Empêche le rechargement de la page
 
-      // Option 1 : Simple fenêtre d'alerte
-      alert("Merci ! Votre réponse a bien été envoyée.");
+    // Récupération des données du formulaire
+    var formData = {
+      name: document.getElementById('name').value,
+      guests: document.getElementById('guests').value,
+      email: document.getElementById('email').value,
+      phone: document.getElementById('phone').value,
+      invitationType: document.getElementById('invitationType').value,
+      // Pour plusieurs checkboxes, on peut rassembler les valeurs cochées
+      response: Array.from(document.querySelectorAll('input[name="response"]:checked')).map(cb => cb.value).join(', '),
+      comments: document.getElementById('comments').value
+    };
 
-      // Option 2 : Remplacer le contenu du formulaire par un message
-      // document.querySelector('.form-section').innerHTML = `
-      //  <h2>Merci, votre réponse a bien été envoyée !</h2>
-      //  <p>Nous avons hâte de vous voir !</p>
+    // Envoi des données à l'Apps Script via fetch
+    fetch('YOUR_WEB_APP_URL', {  // Remplacez YOUR_WEB_APP_URL par l'URL de votre Web App
+      method: 'POST',
+      // En fonction des restrictions CORS, vous pourriez avoir à utiliser 'no-cors'
+      mode: 'no-cors',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(formData)
+    })
+    .then(response => {
+      // En mode no-cors, il n'est pas possible de lire la réponse
+      // On affiche directement le message de succès
+      document.querySelector('.form-section').innerHTML = `
+        <h2>Merci, votre réponse a bien été envoyée !</h2>
       `;
+    })
+    .catch(error => {
+      console.error('Erreur lors de l’envoi :', error);
+      // Optionnel : afficher un message d'erreur
     });
-  </script>
-</body>
-</html>
+  });
+</script>
