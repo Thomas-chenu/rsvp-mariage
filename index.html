@@ -49,6 +49,7 @@
             align-items: center;
             position: sticky;
             top: 10px;
+            transition: transform 0.5s ease-in-out;
         }
         .image-container img {
             width: 100%;
@@ -57,7 +58,7 @@
         }
         .cagnotte-section {
             text-align: center;
-            margin-top: 50px;
+            margin-top: 20px;
             padding: 20px;
         }
         .cagnotte-section a {
@@ -111,7 +112,7 @@
                 </form>
             </div>
         </div>
-        <div class="image-container">
+        <div class="image-container" id="imageContainer">
             <img src="1C062C97-0E35-401B-80F7-DF04855A6DA6_1_105_c.jpeg" alt="Photo du couple">
         </div>
     </div>
@@ -145,6 +146,12 @@
                     <label><input type="checkbox" name="response" value="absent" class="absent"> Absent</label>
                 `;
             }
+        });
+        
+        document.addEventListener('scroll', function() {
+            let scrollPosition = window.scrollY;
+            let image = document.getElementById('imageContainer');
+            image.style.transform = `translateX(${scrollPosition * 0.2}px)`;
         });
     </script>
 </body>
