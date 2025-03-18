@@ -91,7 +91,24 @@
             border: none;
             cursor: pointer;
         }
-    </style>
+            input[type="checkbox"] {
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #2F4F4F;
+            border-radius: 50%;
+            display: inline-block;
+            position: relative;
+        }
+        input[type="checkbox"]:checked::before {
+            content: '';
+            font-size: 24px;
+            color: #2F4F4F;
+            position: absolute;
+            top: -3px;
+            left: 3px;
+        }
+</style>
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=MonteCarlo&display=swap" rel="stylesheet">
 </head>
@@ -123,6 +140,43 @@
 </select>
 <div id="responseOptions"></div>
 <script>
+    document.getElementById('invitationType').addEventListener('change', function() {
+        const responseOptions = document.getElementById('responseOptions');
+        responseOptions.innerHTML = "";
+        if (this.value === 'vin-honneur') {
+            responseOptions.innerHTML = `
+                <label><input type="checkbox" name="response" value="cocktail" class="response-option"> Cocktail</label>
+                <label><input type="checkbox" name="response" value="absent" class="absent"> Absent</label>
+            `;
+        } else if (this.value === 'diner') {
+            responseOptions.innerHTML = `
+                <label><input type="checkbox" name="response" value="cocktail" class="response-option"> Cocktail</label>
+                <label><input type="checkbox" name="response" value="diner" class="response-option"> Dîner</label>
+                <label><input type="checkbox" name="response" value="absent" class="absent"> Absent</label>
+            `;
+        } else if (this.value === 'brunch') {
+            responseOptions.innerHTML = `
+                <label><input type="checkbox" name="response" value="cocktail" class="response-option"> Cocktail</label>
+                <label><input type="checkbox" name="response" value="diner" class="response-option"> Dîner</label>
+                <label><input type="checkbox" name="response" value="brunch" class="response-option"> Brunch</label>
+                <label><input type="checkbox" name="response" value="absent" class="absent"> Absent</label>
+            `;
+        }
+
+        document.querySelectorAll(".absent").forEach(absentCheckbox => {
+            absentCheckbox.addEventListener("change", function() {
+                if (this.checked) {
+                    document.querySelectorAll(".response-option").forEach(cb => cb.checked = false);
+                }
+            });
+        });
+
+        document.querySelectorAll(".response-option").forEach(optionCheckbox => {
+            optionCheckbox.addEventListener("change", function() {
+                document.querySelectorAll(".absent").forEach(absentCheckbox => absentCheckbox.checked = false);
+            });
+        });
+    });
     document.getElementById('invitationType').addEventListener('change', function() {
         const responseOptions = document.getElementById('responseOptions');
         responseOptions.innerHTML = "";
