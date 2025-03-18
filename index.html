@@ -86,7 +86,6 @@
       padding: 20px;
       max-width: 500px;
       margin: auto;
-      /* Retiré le positionnement "top: -50px;" pour la garder à la suite du formulaire */
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -254,6 +253,20 @@
       let scrollPosition = window.scrollY;
       let image = document.getElementById('imageContainer').querySelector('img');
       image.style.transform = `translateX(${scrollPosition * 0.1}px)`;
+    });
+
+    // Lorsque le formulaire est soumis, afficher un message de remerciement
+    document.getElementById('rsvpForm').addEventListener('submit', function(e) {
+      e.preventDefault(); // Empêche l'envoi classique et le rechargement de la page
+
+      // Option 1 : Simple fenêtre d'alerte
+      // alert("Merci ! Votre réponse a bien été envoyée.");
+
+      // Option 2 : Remplacer le contenu du formulaire par un message
+      document.querySelector('.form-section').innerHTML = `
+        <h2>Merci, votre réponse a bien été envoyée !</h2>
+        <p>Nous avons hâte de vous voir !</p>
+      `;
     });
   </script>
 </body>
