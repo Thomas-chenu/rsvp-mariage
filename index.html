@@ -92,16 +92,25 @@
             cursor: pointer;
         }
             input[type="checkbox"] {
-            appearance: none;
-            width: 20px;
-            height: 20px;
-            border: 2px solid #2F4F4F;
-            border-radius: 50%;
-            display: inline-block;
-            position: relative;
-        }
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #2F4F4F;
+    border-radius: 50%;
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+}
+input[type="checkbox"]:checked::before {
+    content: '2';
+    font-size: 24px;
+    color: #2F4F4F;
+    position: absolute;
+    top: -3px;
+    left: 3px;
+}
         input[type="checkbox"]:checked::before {
-            content: '';
+            content: '2';
             font-size: 24px;
             color: #2F4F4F;
             position: absolute;
@@ -145,8 +154,14 @@
         responseOptions.innerHTML = "";
         if (this.value === 'vin-honneur') {
             responseOptions.innerHTML = `
-                <label><input type="checkbox" name="response" value="cocktail" class="response-option"> Cocktail</label>
-                <label><input type="checkbox" name="response" value="absent" class="absent"> Absent</label>
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 5px;">
+    <input type="checkbox" name="response" value="cocktail" class="response-option">
+    <span>Cocktail</span>
+</div>
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 5px;">
+    <input type="checkbox" name="response" value="absent" class="absent">
+    <span>Absent</span>
+</div>
             `;
         } else if (this.value === 'diner') {
             responseOptions.innerHTML = `
@@ -164,11 +179,18 @@
         }
 
         document.querySelectorAll(".absent").forEach(absentCheckbox => {
-            absentCheckbox.addEventListener("change", function() {
-                if (this.checked) {
-                    document.querySelectorAll(".response-option").forEach(cb => cb.checked = false);
-                }
-            });
+    absentCheckbox.addEventListener("change", function() {
+        if (this.checked) {
+            document.querySelectorAll(".response-option").forEach(cb => cb.checked = false);
+        }
+    });
+});
+
+document.querySelectorAll(".response-option").forEach(optionCheckbox => {
+    optionCheckbox.addEventListener("change", function() {
+        document.querySelectorAll(".absent").forEach(absentCheckbox => absentCheckbox.checked = false);
+    });
+});
         });
 
         document.querySelectorAll(".response-option").forEach(optionCheckbox => {
