@@ -154,36 +154,45 @@ input[type="checkbox"]:checked::before {
         responseOptions.innerHTML = "";
         if (this.value === 'vin-honneur') {
             responseOptions.innerHTML = `
-                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 5px;">
-    <input type="checkbox" name="response" value="cocktail" class="response-option">
-    <span>Cocktail</span>
-</div>
-                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 5px;">
-    <input type="checkbox" name="response" value="absent" class="absent">
-    <span>Absent</span>
-</div>
+                <div style="display: flex; flex-direction: column; gap: 10px;">
+                    <label><input type="checkbox" name="response" value="cocktail" class="response-option"> Cocktail</label>
+                    <label><input type="checkbox" name="response" value="absent" class="absent"> Absent</label>
+                </div>
             `;
         } else if (this.value === 'diner') {
             responseOptions.innerHTML = `
-                <label><input type="checkbox" name="response" value="cocktail" class="response-option"> Cocktail</label>
-                <label><input type="checkbox" name="response" value="diner" class="response-option"> Dîner</label>
-                <label><input type="checkbox" name="response" value="absent" class="absent"> Absent</label>
+                <div style="display: flex; flex-direction: column; gap: 10px;">
+                    <label><input type="checkbox" name="response" value="cocktail" class="response-option"> Cocktail</label>
+                    <label><input type="checkbox" name="response" value="diner" class="response-option"> Dîner</label>
+                    <label><input type="checkbox" name="response" value="absent" class="absent"> Absent</label>
+                </div>
             `;
         } else if (this.value === 'brunch') {
             responseOptions.innerHTML = `
-                <label><input type="checkbox" name="response" value="cocktail" class="response-option"> Cocktail</label>
-                <label><input type="checkbox" name="response" value="diner" class="response-option"> Dîner</label>
-                <label><input type="checkbox" name="response" value="brunch" class="response-option"> Brunch</label>
-                <label><input type="checkbox" name="response" value="absent" class="absent"> Absent</label>
+                <div style="display: flex; flex-direction: column; gap: 10px;">
+                    <label><input type="checkbox" name="response" value="cocktail" class="response-option"> Cocktail</label>
+                    <label><input type="checkbox" name="response" value="diner" class="response-option"> Dîner</label>
+                    <label><input type="checkbox" name="response" value="brunch" class="response-option"> Brunch</label>
+                    <label><input type="checkbox" name="response" value="absent" class="absent"> Absent</label>
+                </div>
             `;
         }
-
+        
         document.querySelectorAll(".absent").forEach(absentCheckbox => {
-    absentCheckbox.addEventListener("change", function() {
-        if (this.checked) {
-            document.querySelectorAll(".response-option").forEach(cb => cb.checked = false);
-        }
+            absentCheckbox.addEventListener("change", function() {
+                if (this.checked) {
+                    document.querySelectorAll(".response-option").forEach(cb => cb.checked = false);
+                }
+            });
+        });
+        
+        document.querySelectorAll(".response-option").forEach(optionCheckbox => {
+            optionCheckbox.addEventListener("change", function() {
+                document.querySelectorAll(".absent").forEach(absentCheckbox => absentCheckbox.checked = false);
+            });
+        });
     });
+</script>
 });
 
 document.querySelectorAll(".response-option").forEach(optionCheckbox => {
