@@ -4,7 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>RSVP - Mariage</title>
+
+  <!-- Feuilles de style -->
   <style>
+    /* ------ Styles généraux ------ */
     body {
       font-family: 'Garamond', serif;
       padding: 0;
@@ -19,6 +22,8 @@
     .header h1 {
       font-size: 4em;
       margin-bottom: 10px;
+      font-family: 'MonteCarlo', cursive;
+      font-weight: bold;
     }
     .main-container {
       display: flex;
@@ -35,41 +40,14 @@
       font-size: 1.5em;
       margin: 5px 0;
     }
+
+    /* ------ Formulaire ------ */
     .form-section {
       background: rgba(255, 255, 255, 0.9);
       padding: 40px;
       border-radius: 10px;
       box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
       max-width: 500px;
-    }
-    .image-container {
-      flex: 1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .image-container img {
-      width: 100%;
-      height: auto;
-      border-radius: 10px;
-      transform: translateX(0);
-      transition: transform 0.5s ease-in-out;
-    }
-    .cagnotte-section {
-      text-align: center;
-      margin-top: 10px;
-      padding: 20px;
-    }
-    .cagnotte-section a {
-      display: inline-block;
-      margin-top: 10px;
-      padding: 10px 20px;
-      background-color: #2F4F4F;
-      color: white;
-      text-decoration: none;
-      border-radius: 5px;
     }
     input, select, button, textarea {
       width: 100%;
@@ -85,32 +63,81 @@
       border: none;
       cursor: pointer;
     }
+
+    /* ------ Checkbox personnalisée (cercle plein) ------ */
     input[type="checkbox"] {
       appearance: none;
       width: 20px;
       height: 20px;
       border: 2px solid #2F4F4F;
       border-radius: 50%;
-      position: relative;
       cursor: pointer;
+      position: relative;
     }
     input[type="checkbox"]:checked {
       background-color: #2F4F4F;
-      border: 2px solid #2F4F4F; /* la bordure reste là, mais est invisible car de la même couleur */
+      border: 2px solid #2F4F4F;
+    }
+
+    /* ------ Section cagnotte ------ */
+    .cagnotte-section {
+      text-align: center;
+      margin-top: 10px;
+      padding: 20px;
+      max-width: 500px;
+      margin: auto;
+      /* Retiré le positionnement "top: -50px;" pour la garder à la suite du formulaire */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .cagnotte-section a {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 10px 20px;
+      background-color: #2F4F4F;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+
+    /* ------ Image ------ */
+    .image-container {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .image-container img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      transform: translateX(0);
+      transition: transform 0.5s ease-in-out;
     }
   </style>
+
+  <!-- Polices externes -->
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=MonteCarlo&display=swap" rel="stylesheet">
 </head>
 <body>
+  <!-- En-tête -->
   <div class="header">
-    <h1 style="font-family: 'MonteCarlo', cursive; font-size: 3em; font-weight: bold;">Ségolène & Thomas</h1>
+    <h1>Ségolène & Thomas</h1>
   </div>
   
+  <!-- Contenu principal -->
   <div class="main-container">
+    <!-- Section gauche (Formulaire + Cagnotte) -->
     <div class="left-section">
       <h3>Samedi, 16 août 2025</h3>
       <h3>Mas d'Arvieux, Tarascon</h3>
+
+      <!-- Formulaire RSVP -->
       <div class="form-section">
         <h2>Merci de nous indiquer votre présence</h2>
         <form id="rsvpForm">
@@ -122,32 +149,47 @@
           </select>
           <input type="email" id="email" placeholder="Adresse email (optionnel)">
           <input type="tel" id="phone" placeholder="Numéro de téléphone (optionnel)">
+
           <select id="invitationType" required>
             <option value="" disabled selected>Type d'invitation</option>
             <option value="vin-honneur">Vin d'honneur uniquement</option>
             <option value="diner">Cocktail / Dîner</option>
             <option value="brunch">Cocktail / Dîner / Brunch</option>
           </select>
+
+          <!-- Conteneur pour afficher les checkboxes en fonction du type d'invitation -->
           <div id="responseOptions"></div>
+
           <textarea id="comments" placeholder="Remarques (allergies, précisions)"></textarea>
           <button type="submit">Envoyer</button>
         </form>
       </div>
-      <div class="cagnotte-section" style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; max-width: 500px; margin: auto; position: relative; top: -50px;">
+
+      <!-- Section cagnotte -->
+      <div class="cagnotte-section">
         <h2>Participation libre à notre voyage de noces</h2>
-        <p>Nous avons décidé de ne pas faire de liste de mariage, en revanche, nous envisageons d'organiser notre voyage de noces fin 2025 avec plusieurs destinations en tête : Tanzanie/Zanzibar, Guatemala, Costa Rica.</p>
+        <p>
+          Nous avons décidé de ne pas faire de liste de mariage, en revanche, nous envisageons
+          d'organiser notre voyage de noces fin 2025 avec plusieurs destinations en tête : 
+          Tanzanie/Zanzibar, Guatemala, Costa Rica.
+        </p>
         <a href="https://www.lien-vers-la-cagnotte.com" target="_blank">Contribuer à notre cagnotte</a>
       </div>
     </div>
+
+    <!-- Section image à droite -->
     <div class="image-container" id="imageContainer">
       <img src="1C062C97-0E35-401B-80F7-DF04855A6DA6_1_105_c.jpeg" alt="Photo du couple">
     </div>
   </div>
 
+  <!-- Scripts -->
   <script>
+    // Affichage des options en fonction du type d'invitation
     document.getElementById('invitationType').addEventListener('change', function() {
       const responseOptions = document.getElementById('responseOptions');
       responseOptions.innerHTML = "";
+
       if (this.value === 'vin-honneur') {
         responseOptions.innerHTML = `
           <div style="display: flex; flex-direction: column; gap: 5px;">
@@ -192,6 +234,7 @@
         `;
       }
       
+      // Gérer l'exclusion mutuelle entre "absent" et les autres options
       document.querySelectorAll(".absent").forEach(absentCheckbox => {
         absentCheckbox.addEventListener("change", function() {
           if (this.checked) {
@@ -199,15 +242,14 @@
           }
         });
       });
-      
       document.querySelectorAll(".response-option").forEach(optionCheckbox => {
         optionCheckbox.addEventListener("change", function() {
           document.querySelectorAll(".absent").forEach(absentCheckbox => absentCheckbox.checked = false);
         });
       });
     });
-  </script>
-  <script>
+
+    // Effet de parallaxe horizontal sur l'image en scrollant
     document.addEventListener('scroll', function() {
       let scrollPosition = window.scrollY;
       let image = document.getElementById('imageContainer').querySelector('img');
