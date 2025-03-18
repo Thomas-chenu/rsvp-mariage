@@ -1,250 +1,230 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RSVP - Mariage</title>
-    <style>
-        body {
-            font-family: 'Garamond', serif;
-            padding: 0;
-            margin: 0;
-            background-color: #f9f9f9;
-            color: #2F4F4F;
-        }
-        .header {
-            text-align: center;
-            padding: 50px;
-        }
-        .header h1 {
-            font-size: 4em;
-            margin-bottom: 10px;
-        }
-        .main-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            padding: 50px;
-        }
-        .left-section {
-            flex: 1;
-            text-align: left;
-            padding-left: 5%;
-        }
-        .left-section h3 {
-            font-size: 1.5em;
-            margin: 5px 0;
-        }
-        .form-section {
-            background: rgba(255, 255, 255, 0.9);
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            max-width: 500px;
-        }
-        .image-container {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            overflow: hidden;
-        }
-        .image-container img {
-            width: 100%;
-            height: auto;
-            border-radius: 10px;
-            transform: translateX(0);
-            transition: transform 0.5s ease-in-out;
-        }
-        .cagnotte-section {
-            text-align: center;
-            margin-top: 10px;
-            padding: 20px;
-        }
-        .cagnotte-section a {
-            display: inline-block;
-            margin-top: 10px;
-            padding: 10px 20px;
-            background-color: #2F4F4F;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-        }
-        input, select, button, textarea {
-            width: 100%;
-            margin: 10px 0;
-            padding: 10px;
-            border: 1px solid #2F4F4F;
-            border-radius: 5px;
-            box-sizing: border-box;
-        
-            width: 100%;
-            margin: 10px 0;
-            padding: 10px;
-            border: 1px solid #2F4F4F;
-            border-radius: 5px;
-        }
-        button {
-            background-color: #2F4F4F;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-            input[type="checkbox"] {
-    appearance: none;
-    width: 20px;
-    height: 20px;
-    border: 2px solid #2F4F4F;
-    border-radius: 50%;
-    display: inline-block;
-    position: relative;
-    cursor: pointer;
-}
-input[type="checkbox"]:checked::before {
-    content: '\25CF'; /* Cercle plein */
-    font-size: 14px;
-    color: white;
-    background-color: #2F4F4F;
-    width: 14px;
-    height: 14px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    top: 2px;
-    left: 2px;
-}
-input[type="checkbox"]:checked::before {
-    content: '\25CF'; /* Cercle plein */
-    font-size: 14px;
-    color: white;
-    background-color: #2F4F4F;
-    width: 14px;
-    height: 14px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    top: 2px;
-    left: 2px;
-}
-        input[type="checkbox"]:checked::before {
-    content: '\25CF'; /* Cercle plein */
-    font-size: 14px;
-    color: white;
-    background-color: #2F4F4F;
-    width: 14px;
-    height: 14px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    top: 2px;
-    left: 2px;
-        }
-</style>
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=MonteCarlo&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RSVP - Mariage</title>
+  <style>
+    body {
+      font-family: 'Garamond', serif;
+      padding: 0;
+      margin: 0;
+      background-color: #f9f9f9;
+      color: #2F4F4F;
+    }
+    .header {
+      text-align: center;
+      padding: 50px;
+    }
+    .header h1 {
+      font-size: 4em;
+      margin-bottom: 10px;
+    }
+    .main-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 50px;
+    }
+    .left-section {
+      flex: 1;
+      text-align: left;
+      padding-left: 5%;
+    }
+    .left-section h3 {
+      font-size: 1.5em;
+      margin: 5px 0;
+    }
+    .form-section {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      max-width: 500px;
+    }
+    .image-container {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .image-container img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      transform: translateX(0);
+      transition: transform 0.5s ease-in-out;
+    }
+    .cagnotte-section {
+      text-align: center;
+      margin-top: 10px;
+      padding: 20px;
+    }
+    .cagnotte-section a {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 10px 20px;
+      background-color: #2F4F4F;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+    input, select, button, textarea {
+      width: 100%;
+      margin: 10px 0;
+      padding: 10px;
+      border: 1px solid #2F4F4F;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+    button {
+      background-color: #2F4F4F;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    input[type="checkbox"] {
+      appearance: none;
+      width: 20px;
+      height: 20px;
+      border: 2px solid #2F4F4F;
+      border-radius: 50%;
+      display: inline-block;
+      position: relative;
+      cursor: pointer;
+    }
+    input[type="checkbox"]:checked::before {
+      content: '\25CF'; /* Cercle plein */
+      font-size: 14px;
+      color: white;
+      background-color: #2F4F4F;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      top: 2px;
+      left: 2px;
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=MonteCarlo&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="header">
-        <h1 style="font-family: 'MonteCarlo', cursive; font-size: 3em; font-weight: bold;">Ségolène & Thomas</h1>
+  <div class="header">
+    <h1 style="font-family: 'MonteCarlo', cursive; font-size: 3em; font-weight: bold;">Ségolène & Thomas</h1>
+  </div>
+  
+  <div class="main-container">
+    <div class="left-section">
+      <h3>Samedi, 16 août 2025</h3>
+      <h3>Mas d'Arvieux, Tarascon</h3>
+      <div class="form-section">
+        <h2>Merci de nous indiquer votre présence</h2>
+        <form id="rsvpForm">
+          <input type="text" id="name" placeholder="Nom(s) et Prénom(s)" required>
+          <select id="guests" required>
+            <option value="" disabled selected>Nombre de personnes</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+          </select>
+          <input type="email" id="email" placeholder="Adresse email (optionnel)">
+          <input type="tel" id="phone" placeholder="Numéro de téléphone (optionnel)">
+          <select id="invitationType" required>
+            <option value="" disabled selected>Type d'invitation</option>
+            <option value="vin-honneur">Vin d'honneur uniquement</option>
+            <option value="diner">Cocktail / Dîner</option>
+            <option value="brunch">Cocktail / Dîner / Brunch</option>
+          </select>
+          <div id="responseOptions"></div>
+          <textarea id="comments" placeholder="Remarques (allergies, précisions)"></textarea>
+          <button type="submit">Envoyer</button>
+        </form>
+      </div>
+      <div class="cagnotte-section" style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; max-width: 500px; margin: auto; position: relative; top: -50px;">
+        <h2>Participation libre à notre voyage de noces</h2>
+        <p>Nous avons décidé de ne pas faire de liste de mariage, en revanche, nous envisageons d'organiser notre voyage de noces fin 2025 avec plusieurs destinations en tête : Tanzanie/Zanzibar, Guatemala, Costa Rica.</p>
+        <a href="https://www.lien-vers-la-cagnotte.com" target="_blank">Contribuer à notre cagnotte</a>
+      </div>
     </div>
-    
-    <div class="main-container">
-        <div class="left-section">
-            <h3>Samedi, 16 août 2025</h3>
-            <h3>Mas d'Arvieux, Tarascon</h3>
-            <div class="form-section">
-                <h2>Merci de nous indiquer votre présence</h2>
-                <form id="rsvpForm">
-                    <input type="text" id="name" placeholder="Nom(s) et Prénom(s)" required>
-                    <select id="guests" required>
-                        <option value="" disabled selected>Nombre de personnes</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                    </select>
-                    <input type="email" id="email" placeholder="Adresse email (optionnel)">
-                    <input type="tel" id="phone" placeholder="Numéro de téléphone (optionnel)">
-                    <select id="invitationType" required>
-    <option value="" disabled selected>Type d'invitation</option>
-    <option value="vin-honneur">Vin d'honneur uniquement</option>
-    <option value="diner">Cocktail / Dîner</option>
-    <option value="brunch">Cocktail / Dîner / Brunch</option>
-</select>
-<div id="responseOptions"></div>
-<script>
-    document.getElementById('invitationType').addEventListener('change', function() {
-        const responseOptions = document.getElementById('responseOptions');
-        responseOptions.innerHTML = "";
-        if (this.value === 'vin-honneur') {
-            responseOptions.innerHTML = `
-                <div style="display: flex; flex-direction: column; gap: 5px;">
-                    <label style="display: flex; align-items: center;"><input type="checkbox" name="response" value="cocktail" class="response-option" style="margin-right: 10px;"> Cocktail</label>
-                    <label style="display: flex; align-items: center;"><input type="checkbox" name="response" value="absent" class="absent" style="margin-right: 10px;"> Absent</label>
-                </div>
-            `;
-        } else if (this.value === 'diner') {
-            responseOptions.innerHTML = `
-                <div style="display: flex; flex-direction: column; gap: 5px;">
-                    <label style="display: flex; align-items: center;"><input type="checkbox" name="response" value="cocktail" class="response-option" style="margin-right: 10px;"> Cocktail</label>
-                    <label style="display: flex; align-items: center;"><input type="checkbox" name="response" value="diner" class="response-option" style="margin-right: 10px;"> Dîner</label>
-                    <label style="display: flex; align-items: center;"><input type="checkbox" name="response" value="absent" class="absent" style="margin-right: 10px;"> Absent</label>
-                </div>
-            `;
-        } else if (this.value === 'brunch') {
-            responseOptions.innerHTML = `
-                <div style="display: flex; flex-direction: column; gap: 5px;">
-                    <label style="display: flex; align-items: center;"><input type="checkbox" name="response" value="cocktail" class="response-option" style="margin-right: 10px;"> Cocktail</label>
-                    <label style="display: flex; align-items: center;"><input type="checkbox" name="response" value="diner" class="response-option" style="margin-right: 10px;"> Dîner</label>
-                    <label style="display: flex; align-items: center;"><input type="checkbox" name="response" value="brunch" class="response-option" style="margin-right: 10px;"> Brunch</label>
-                    <label style="display: flex; align-items: center;"><input type="checkbox" name="response" value="absent" class="absent" style="margin-right: 10px;"> Absent</label>
-                </div>
-            `;
-        }
-        
-        document.querySelectorAll(".absent").forEach(absentCheckbox => {
-            absentCheckbox.addEventListener("change", function() {
-                if (this.checked) {
-                    document.querySelectorAll(".response-option").forEach(cb => cb.checked = false);
-                }
-            });
-        });
-        
-        document.querySelectorAll(".response-option").forEach(optionCheckbox => {
-            optionCheckbox.addEventListener("change", function() {
-                document.querySelectorAll(".absent").forEach(absentCheckbox => absentCheckbox.checked = false);
-            });
-        });
-    });
-</script>
-                    </select>
-                    <div id="responseOptions"></div>
-                    <textarea id="comments" placeholder="Remarques (allergies, précisions)"></textarea>
-                    <button type="submit">Envoyer</button>
-                </form>
-            </div>
-            <div class="cagnotte-section" style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; max-width: 500px; margin: auto; position: relative; top: -50px;">
-                <h2>Participation libre à notre voyage de noces</h2>
-                <p>Nous avons décidé de ne pas faire de liste de mariage, en revanche, nous envisageons d'organiser notre voyage de noces fin 2025 avec plusieurs destinations en tête : Tanzanie/Zanzibar, Guatemala, Costa Rica.</p>
-                <a href="https://www.lien-vers-la-cagnotte.com" target="_blank">Contribuer à notre cagnotte</a>
-            </div>
-        </div>
-        <div class="image-container" id="imageContainer">
-            <img src="1C062C97-0E35-401B-80F7-DF04855A6DA6_1_105_c.jpeg" alt="Photo du couple">
-        </div>
+    <div class="image-container" id="imageContainer">
+      <img src="1C062C97-0E35-401B-80F7-DF04855A6DA6_1_105_c.jpeg" alt="Photo du couple">
     </div>
+  </div>
 
-    <script>
-        document.addEventListener('scroll', function() {
-            let scrollPosition = window.scrollY;
-            let image = document.getElementById('imageContainer').querySelector('img');
-            image.style.transform = `translateX(${scrollPosition * 0.1}px)`;
+  <script>
+    document.getElementById('invitationType').addEventListener('change', function() {
+      const responseOptions = document.getElementById('responseOptions');
+      responseOptions.innerHTML = "";
+      if (this.value === 'vin-honneur') {
+        responseOptions.innerHTML = `
+          <div style="display: flex; flex-direction: column; gap: 5px;">
+            <label style="display: flex; align-items: center;">
+              <input type="checkbox" name="response" value="cocktail" class="response-option" style="margin-right: 10px;"> Cocktail
+            </label>
+            <label style="display: flex; align-items: center;">
+              <input type="checkbox" name="response" value="absent" class="absent" style="margin-right: 10px;"> Absent
+            </label>
+          </div>
+        `;
+      } else if (this.value === 'diner') {
+        responseOptions.innerHTML = `
+          <div style="display: flex; flex-direction: column; gap: 5px;">
+            <label style="display: flex; align-items: center;">
+              <input type="checkbox" name="response" value="cocktail" class="response-option" style="margin-right: 10px;"> Cocktail
+            </label>
+            <label style="display: flex; align-items: center;">
+              <input type="checkbox" name="response" value="diner" class="response-option" style="margin-right: 10px;"> Dîner
+            </label>
+            <label style="display: flex; align-items: center;">
+              <input type="checkbox" name="response" value="absent" class="absent" style="margin-right: 10px;"> Absent
+            </label>
+          </div>
+        `;
+      } else if (this.value === 'brunch') {
+        responseOptions.innerHTML = `
+          <div style="display: flex; flex-direction: column; gap: 5px;">
+            <label style="display: flex; align-items: center;">
+              <input type="checkbox" name="response" value="cocktail" class="response-option" style="margin-right: 10px;"> Cocktail
+            </label>
+            <label style="display: flex; align-items: center;">
+              <input type="checkbox" name="response" value="diner" class="response-option" style="margin-right: 10px;"> Dîner
+            </label>
+            <label style="display: flex; align-items: center;">
+              <input type="checkbox" name="response" value="brunch" class="response-option" style="margin-right: 10px;"> Brunch
+            </label>
+            <label style="display: flex; align-items: center;">
+              <input type="checkbox" name="response" value="absent" class="absent" style="margin-right: 10px;"> Absent
+            </label>
+          </div>
+        `;
+      }
+      
+      document.querySelectorAll(".absent").forEach(absentCheckbox => {
+        absentCheckbox.addEventListener("change", function() {
+          if (this.checked) {
+            document.querySelectorAll(".response-option").forEach(cb => cb.checked = false);
+          }
         });
-    </script>
+      });
+      
+      document.querySelectorAll(".response-option").forEach(optionCheckbox => {
+        optionCheckbox.addEventListener("change", function() {
+          document.querySelectorAll(".absent").forEach(absentCheckbox => absentCheckbox.checked = false);
+        });
+      });
+    });
+  </script>
+  <script>
+    document.addEventListener('scroll', function() {
+      let scrollPosition = window.scrollY;
+      let image = document.getElementById('imageContainer').querySelector('img');
+      image.style.transform = `translateX(${scrollPosition * 0.1}px)`;
+    });
+  </script>
 </body>
 </html>
