@@ -47,18 +47,19 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            position: sticky;
-            top: 10px;
-            transition: transform 0.5s ease-in-out;
+            position: relative;
+            overflow: hidden;
         }
         .image-container img {
             width: 100%;
             height: auto;
             border-radius: 10px;
+            transform: translateX(0);
+            transition: transform 0.5s ease-in-out;
         }
         .cagnotte-section {
             text-align: center;
-            margin-top: 20px;
+            margin-top: 10px;
             padding: 20px;
         }
         .cagnotte-section a {
@@ -111,47 +112,22 @@
                     <button type="submit">Envoyer</button>
                 </form>
             </div>
+            <div class="cagnotte-section">
+                <h2>Un petit geste pour notre voyage de noces</h2>
+                <p>Nous avons décidé de ne pas faire de liste de mariage, mais si vous souhaitez nous offrir un cadeau, nous serions ravis que vous participiez à notre voyage de noces.</p>
+                <a href="https://www.lien-vers-la-cagnotte.com" target="_blank">Contribuer à notre cagnotte</a>
+            </div>
         </div>
         <div class="image-container" id="imageContainer">
             <img src="1C062C97-0E35-401B-80F7-DF04855A6DA6_1_105_c.jpeg" alt="Photo du couple">
         </div>
     </div>
 
-    <div class="cagnotte-section">
-        <h2>Un petit geste pour notre voyage de noces</h2>
-        <p>Nous avons décidé de ne pas faire de liste de mariage, mais si vous souhaitez nous offrir un cadeau, nous serions ravis que vous participiez à notre voyage de noces.</p>
-        <a href="https://www.lien-vers-la-cagnotte.com" target="_blank">Contribuer à notre cagnotte</a>
-    </div>
-
     <script>
-        document.getElementById('invitationType').addEventListener('change', function() {
-            const responseOptions = document.getElementById('responseOptions');
-            responseOptions.innerHTML = "";
-            if (this.value === 'vin-honneur') {
-                responseOptions.innerHTML = `
-                    <label><input type="checkbox" name="response" value="cocktail" class="response-option"> Cocktail</label>
-                    <label><input type="checkbox" name="response" value="absent" class="absent"> Absent</label>
-                `;
-            } else if (this.value === 'diner') {
-                responseOptions.innerHTML = `
-                    <label><input type="checkbox" name="response" value="cocktail" class="response-option"> Cocktail</label>
-                    <label><input type="checkbox" name="response" value="diner" class="response-option"> Dîner</label>
-                    <label><input type="checkbox" name="response" value="absent" class="absent"> Absent</label>
-                `;
-            } else if (this.value === 'brunch') {
-                responseOptions.innerHTML = `
-                    <label><input type="checkbox" name="response" value="cocktail" class="response-option"> Cocktail</label>
-                    <label><input type="checkbox" name="response" value="diner" class="response-option"> Dîner</label>
-                    <label><input type="checkbox" name="response" value="brunch" class="response-option"> Brunch</label>
-                    <label><input type="checkbox" name="response" value="absent" class="absent"> Absent</label>
-                `;
-            }
-        });
-        
         document.addEventListener('scroll', function() {
             let scrollPosition = window.scrollY;
-            let image = document.getElementById('imageContainer');
-            image.style.transform = `translateX(${scrollPosition * 0.2}px)`;
+            let image = document.getElementById('imageContainer').querySelector('img');
+            image.style.transform = `translateX(${scrollPosition * 0.1}px)`;
         });
     </script>
 </body>
