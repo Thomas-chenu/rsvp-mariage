@@ -86,10 +86,11 @@
         }
     </style>
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=MonteCarlo&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="header">
-        <h1 style="font-family: 'Dancing Script', cursive; font-size: 3em; font-weight: bold;">Ségolène & Thomas</h1>
+        <h1 style="font-family: 'MonteCarlo', cursive; font-size: 3em; font-weight: bold;">Ségolène & Thomas</h1>
     </div>
     
     <div class="main-container">
@@ -100,10 +101,19 @@
                 <h2>Merci de nous indiquer votre présence</h2>
                 <form id="rsvpForm">
                     <input type="text" id="name" placeholder="Nom(s) et Prénom(s)" required>
-                    <input type="number" id="guests" placeholder="Nombre de personnes (1 ou 2)" min="1" max="2" required>
+                    <select id="guests" required>
+                        <option value="" disabled selected>Nombre de personnes</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                    </select>
                     <input type="email" id="email" placeholder="Adresse email (optionnel)">
                     <input type="tel" id="phone" placeholder="Numéro de téléphone (optionnel)">
-                    <select id="invitationType">
+                    <select id="invitationType" required>
+                        <option value="" disabled selected>Type d'invitation</option>
+                        <option value="vin-honneur">Vin d'honneur uniquement</option>
+                        <option value="diner">Cocktail + Dîner</option>
+                        <option value="brunch">Cocktail + Dîner + Brunch</option>
+                    </select>
                         <option value="vin-honneur">Vin d'honneur uniquement</option>
                         <option value="diner">Cocktail + Dîner</option>
                         <option value="brunch">Cocktail + Dîner + Brunch</option>
@@ -113,9 +123,9 @@
                     <button type="submit">Envoyer</button>
                 </form>
             </div>
-            <div class="cagnotte-section">
+            <div class="cagnotte-section" style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; max-width: 500px; margin: auto;">
                 <h2>Un petit geste pour notre voyage de noces</h2>
-                <p>Nous avons décidé de ne pas faire de liste de mariage, en revanche, nous envisageons d'organiser notre voyage de noces fin 2025 avec plusieurs destinations en tête : Tanzanie/Zanzibarm, Guatemala, Costa Rica.</p>
+                <p>Nous avons décidé de ne pas faire de liste de mariage, en revanche, nous envisageons d'organiser notre voyage de noces fin 2025 avec plusieurs destinations en tête : Tanzanie/Zanzibar, Guatemala, Costa Rica.</p>
                 <a href="https://www.lien-vers-la-cagnotte.com" target="_blank">Contribuer à notre cagnotte</a>
             </div>
         </div>
