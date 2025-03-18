@@ -77,6 +77,13 @@
             padding: 10px;
             border: 1px solid #2F4F4F;
             border-radius: 5px;
+            box-sizing: border-box;
+        
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #2F4F4F;
+            border-radius: 5px;
         }
         button {
             background-color: #2F4F4F;
@@ -115,6 +122,31 @@
     <option value="brunch">Cocktail + Dîner + Brunch</option>
 </select>
 <div id="responseOptions"></div>
+<script>
+    document.getElementById('invitationType').addEventListener('change', function() {
+        const responseOptions = document.getElementById('responseOptions');
+        responseOptions.innerHTML = "";
+        if (this.value === 'vin-honneur') {
+            responseOptions.innerHTML = `
+                <label><input type="checkbox" name="response" value="cocktail" class="response-option"> Cocktail</label>
+                <label><input type="checkbox" name="response" value="absent" class="absent"> Absent</label>
+            `;
+        } else if (this.value === 'diner') {
+            responseOptions.innerHTML = `
+                <label><input type="checkbox" name="response" value="cocktail" class="response-option"> Cocktail</label>
+                <label><input type="checkbox" name="response" value="diner" class="response-option"> Dîner</label>
+                <label><input type="checkbox" name="response" value="absent" class="absent"> Absent</label>
+            `;
+        } else if (this.value === 'brunch') {
+            responseOptions.innerHTML = `
+                <label><input type="checkbox" name="response" value="cocktail" class="response-option"> Cocktail</label>
+                <label><input type="checkbox" name="response" value="diner" class="response-option"> Dîner</label>
+                <label><input type="checkbox" name="response" value="brunch" class="response-option"> Brunch</label>
+                <label><input type="checkbox" name="response" value="absent" class="absent"> Absent</label>
+            `;
+        }
+    });
+</script>
                         <option value="vin-honneur">Vin d'honneur uniquement</option>
                         <option value="diner">Cocktail + Dîner</option>
                         <option value="brunch">Cocktail + Dîner + Brunch</option>
