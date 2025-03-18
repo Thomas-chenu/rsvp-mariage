@@ -255,43 +255,42 @@
       image.style.transform = `translateX(${scrollPosition * 0.1}px)`;
     });
 
-    // Lorsque le formulaire est soumis, afficher un message de remerciement
-   <script>
-  document.getElementById('rsvpForm').addEventListener('submit', function(e) {
-    e.preventDefault(); // Empêche le rechargement de la page
+    // Lorsque le formulaire est soumis, afficher un message de remerciement et envoyer les données vers Google Apps Script
+    document.getElementById('rsvpForm').addEventListener('submit', function(e) {
+      e.preventDefault(); // Empêche le rechargement de la page
 
-    // Récupération des données du formulaire
-    var formData = {
-      name: document.getElementById('name').value,
-      guests: document.getElementById('guests').value,
-      email: document.getElementById('email').value,
-      phone: document.getElementById('phone').value,
-      invitationType: document.getElementById('invitationType').value,
-      // Pour plusieurs checkboxes, on peut rassembler les valeurs cochées
-      response: Array.from(document.querySelectorAll('input[name="response"]:checked')).map(cb => cb.value).join(', '),
-      comments: document.getElementById('comments').value
-    };
+      // Récupération des données du formulaire
+      var formData = {
+        name: document.getElementById('name').value,
+        guests: document.getElementById('guests').value,
+        email: document.getElementById('email').value,
+        phone: document.getElementById('phone').value,
+        invitationType: document.getElementById('invitationType').value,
+        // Pour plusieurs checkboxes, on rassemble les valeurs cochées
+        response: Array.from(document.querySelectorAll('input[name="response"]:checked')).map(cb => cb.value).join(', '),
+        comments: document.getElementById('comments').value
+      };
 
-    // Envoi des données à l'Apps Script via fetch
-    fetch('https://script.google.com/macros/s/AKfycby3kTiPuZtpvwA9Ce8iijAafd4zILVJPdTgH1muvnXAO1zZs9B1k0s_TtfYcE-lZwx8/exec', {  // Remplacez YOUR_WEB_APP_URL par l'URL de votre Web App
-      method: 'POST',
-      // En fonction des restrictions CORS, vous pourriez avoir à utiliser 'no-cors'
-      mode: 'no-cors',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(formData)
-    })
-    .then(response => {
-      // En mode no-cors, il n'est pas possible de lire la réponse
-      // On affiche directement le message de succès
-      document.querySelector('.form-section').innerHTML = `
-        <h2>Merci, votre réponse a bien été envoyée !</h2>
-      `;
-    })
-    .catch(error => {
-      console.error('Erreur lors de l’envoi :', error);
-      // Optionnel : afficher un message d'erreur
+      // Envoi des données à l'Apps Script via fetch
+      fetch('https://script.google.com/macros/s/AKfycby3kTiPuZtpvwA9Ce8iijAafd4zILVJPdTgH1muvnXAO1zZs9B1k0s_TtfYcE-lZwx8/exec', {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      })
+      .then(response => {
+        // En mode no-cors, il n'est pas possible de lire la réponse
+        document.querySelector('.form-section').innerHTML = `
+          <h2>Merci, votre réponse a bien été envoyée !</h2>
+        `;
+      })
+      .catch(error => {
+        console.error('Erreur lors de l’envoi :', error);
+        // Optionnel : afficher un message d'erreur
+      });
     });
-  });
-</script>
+  </script>
+</body>
+</html>
