@@ -184,7 +184,32 @@
 
   <!-- Scripts -->
   <script>
-    // Affichage des options en fonction du type d'invitation
+    // Fonction pour récupérer un paramètre de l'URL
+    function getQueryParam(param) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(param);
+    }
+
+    // Dès que le DOM est chargé, vérifie si un paramètre 'invitation' est présent
+    document.addEventListener('DOMContentLoaded', function() {
+      const invitationParam = getQueryParam('invitation');
+      if (invitationParam) {
+        const invitationSelect = document.getElementById('invitationType');
+        let mappedValue = invitationParam;
+        // Ici, on suppose que pour une invitation "cocktail", on veut afficher l'option "Vin d'honneur uniquement"
+        if (invitationParam === 'cocktail') {
+          mappedValue = 'vin-honneur';
+        }
+        // Pour 'diner' ou 'brunch', la valeur reste telle quelle
+        invitationSelect.value = mappedValue;
+        // Désactive le menu pour empêcher toute modification (optionnel)
+        invitationSelect.disabled = true;
+        // Déclenche l'événement change pour afficher les options de checkboxes associées
+        invitationSelect.dispatchEvent(new Event('change'));
+      }
+    });
+
+    // Affichage des options en fonction du type d'invitation sélectionné
     document.getElementById('invitationType').addEventListener('change', function() {
       const responseOptions = document.getElementById('responseOptions');
       responseOptions.innerHTML = "";
