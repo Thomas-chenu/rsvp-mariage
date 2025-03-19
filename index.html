@@ -104,23 +104,24 @@
 
     /* ------ Image ------ */
     .image-container {
-      flex: 1;                /* Pour rester sur la même ligne que la section de gauche : */
-      max-width: 100%;            /* S'adapte en largeur */
+      flex: 1 1 400px;         /* Pour rester sur la même ligne que la section de gauche : */
+      max-width: 600px;         /* S'adapte en largeur */
+      min-width: 300px;
       height: 500px;          /* Hauteur fixe, à ajuster selon vos besoins */
       position: relative;     
       overflow: hidden;       /* Masque l'image qui déborde */
-      border-radius: 15px;    /* Angles arrondis */
+      border-radius: 10px;    /* Angles arrondis */
       margin-left: auto;      /* Facultatif : aligne à droite si souhaité */
       margin-right: auto;    /* Vous pouvez ajuster le centrage / alignement */
       margin-bottom: 30px;    /* Pour l'exemple, si vous voulez un espace en bas */
-      border: 2px solid #ccc; /* Visuel optionnel pour voir le cadre */
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Visuel optionnel pour voir le cadre */
     }
 
     .image-container img {
       position: absolute;  /* Permet de la déplacer librement */
       top: 0;
       left: 0;
-      width: 120%;         /* Plus large que le conteneur, pour qu'elle déborde */
+      width: 110%;         /* Plus large que le conteneur, pour qu'elle déborde */
       height: auto;        
       object-fit: cover;   /* Garde un ratio correct si vous fixez aussi la hauteur */
       transform: translateX(0); 
