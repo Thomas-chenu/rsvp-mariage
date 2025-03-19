@@ -315,8 +315,8 @@
     document.addEventListener('scroll', function() {
       const scrollPosition = window.scrollY;
       const image = document.querySelector('#imageContainer img');
-      // On applique la translation sur l'axe X pour un effet subtil
-      image.style.transform = `translateX(${scrollPosition * 0.02}px)`;
+      // On applique la translation sur l'axe X
+      image.style.transform = `translateX(${scrollPosition * 0.05}px)`;
     });
 
     // Lorsque le formulaire est soumis, afficher un message de remerciement et envoyer les données vers Google Apps Script
