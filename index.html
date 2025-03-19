@@ -108,14 +108,18 @@
       justify-content: center;
       align-items: center;
       position: relative;
-      overflow: hidden;
+      overflow: hidden;  /* Masque les parties de l'image qui débordent */
+      /* Vous pouvez fixer une hauteur ou utiliser d'autres unités selon vos besoins */
+      height: 400px;  /* Exemple : définir une hauteur fixe pour le cadre */
     }
+
     .image-container img {
-      width: 100%;
-      height: auto;
-      border-radius: 10px;
-      transform: translateX(0);
+      /* On agrandit l'image pour permettre le déplacement sans laisser de vide */
+      transform: scale(1.1) translateX(0);
       transition: transform 0.5s ease-in-out;
+      /* Vous pouvez définir la largeur ou la hauteur selon ce qui convient le mieux */
+      width: auto;
+      height: 100%;  /* L'image remplira verticalement le conteneur */
     }
   </style>
 
@@ -277,7 +281,8 @@
     document.addEventListener('scroll', function() {
       let scrollPosition = window.scrollY;
       let image = document.getElementById('imageContainer').querySelector('img');
-      image.style.transform = `translateX(${scrollPosition * 0.1}px)`;
+      // On applique le scale puis la translation sur l'axe X
+      image.style.transform = `scale(1.1) translateX(${scrollPosition * 0.1}px)`;
     });
 
     // Lorsque le formulaire est soumis, afficher un message de remerciement et envoyer les données vers Google Apps Script
