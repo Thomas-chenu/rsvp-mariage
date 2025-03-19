@@ -14,10 +14,11 @@
       margin: 0;
       background-color: #f9f9f9;
       color: #2F4F4F;
+      min-height: 100vh;
     }
     .header {
       text-align: center;
-      padding: 50px;
+      padding: 30px 0;
     }
     .header h1 {
       font-size: 4em;
@@ -25,36 +26,44 @@
       font-family: 'Dancing Script', cursive;
       font-weight: bold;
     }
+    
+    /* Layout principal - style avec deux colonnes fixes */
     .main-container {
       display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      padding: 20px 50px;
-      gap: 40px; /* Espace entre les deux sections */
+      height: calc(100vh - 110px); /* Hauteur totale moins l'en-tête */
+      position: relative;
     }
+    
+    /* Colonne gauche - contient lieu, formulaire et cagnotte */
     .left-section {
-      flex: 1;
-      max-width: 500px;
+      width: 50%;
+      padding: 0 40px 0 40px;
       display: flex;
       flex-direction: column;
-      align-items: center;
+      box-sizing: border-box;
     }
+    
     .left-section h3 {
       font-size: 1.5em;
       margin: 5px 0;
-      align-self: flex-start;
-      padding-left: 40px;
+      color: #2F4F4F;
     }
 
     /* ------ Formulaire ------ */
     .form-section {
-      background: rgba(255, 255, 255, 0.9);
+      background: #fff;
       padding: 40px;
       border-radius: 10px;
       box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-      width: 100%;
-      box-sizing: border-box;
+      margin-top: 20px;
+      margin-bottom: 20px;
     }
+    
+    .form-section h2 {
+      margin-top: 0;
+      color: #2F4F4F;
+    }
+    
     input, select, button, textarea {
       width: 100%;
       margin: 10px 0;
@@ -63,11 +72,14 @@
       border-radius: 5px;
       box-sizing: border-box;
     }
+    
     button {
       background-color: #2F4F4F;
       color: white;
       border: none;
       cursor: pointer;
+      padding: 12px;
+      font-weight: bold;
     }
 
     /* ------ Checkbox personnalisée (cercle plein) ------ */
@@ -87,16 +99,13 @@
 
     /* ------ Section cagnotte ------ */
     .cagnotte-section {
-      text-align: center;
-      margin-top: 40px;
-      padding: 20px;
-      width: 100%;
-      box-sizing: border-box;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+      margin-top: 20px;
     }
+    
+    .cagnotte-section h2 {
+      color: #2F4F4F;
+    }
+    
     .cagnotte-section a {
       display: inline-block;
       margin-top: 10px;
@@ -109,21 +118,16 @@
 
     /* ------ Image ------ */
     .image-container {
-      flex: 1;
-      max-width: 500px;
-      height: 500px;
-      position: relative;
+      width: 50%;
+      height: 100%;
+      position: fixed;
+      top: 110px; /* Hauteur de l'en-tête */
+      right: 0;
       overflow: hidden;
-      border-radius: 10px;
-      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-      margin-top: 72px; /* Aligne avec le haut du formulaire, en prenant en compte les h3 */
     }
 
     .image-container img {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 110%;
+      width: 100%;
       height: 100%;
       object-fit: cover;
       transform: translateX(0); 
@@ -134,11 +138,18 @@
     @media (max-width: 1024px) {
       .main-container {
         flex-direction: column;
-        align-items: center;
+        height: auto;
       }
-      .image-container {
-        margin-top: 20px;
+      
+      .left-section, .image-container {
         width: 100%;
+      }
+      
+      .image-container {
+        position: relative;
+        top: 0;
+        height: 500px;
+        margin-top: 20px;
       }
     }
   </style>
@@ -154,8 +165,11 @@
   </div>
   
   <!-- Contenu principal -->
+  <!-- En-tête déjà appliqué au-dessus -->
+  
+  <!-- Contenu principal -->
   <div class="main-container">
-    <!-- Section gauche (Formulaire + Cagnotte) -->
+    <!-- Section gauche (Date, Lieu, Formulaire, Cagnotte) -->
     <div class="left-section">
       <h3>Samedi, 16 août 2025</h3>
       <h3>Mas d'Arvieux, Tarascon</h3>
@@ -200,7 +214,7 @@
       </div>
     </div>
 
-    <!-- Section image à droite -->
+    <!-- Section image à droite (pleine hauteur) -->
     <div class="image-container" id="imageContainer">
       <img src="1C062C97-0E35-401B-80F7-DF04855A6DA6_1_105_c.jpeg" alt="Photo du couple">
     </div>
@@ -301,8 +315,8 @@
     document.addEventListener('scroll', function() {
       const scrollPosition = window.scrollY;
       const image = document.querySelector('#imageContainer img');
-      // On applique la translation sur l'axe X
-      image.style.transform = `translateX(${scrollPosition * 0.05}px)`;
+      // On applique la translation sur l'axe X pour un effet subtil
+      image.style.transform = `translateX(${scrollPosition * 0.02}px)`;
     });
 
     // Lorsque le formulaire est soumis, afficher un message de remerciement et envoyer les données vers Google Apps Script
