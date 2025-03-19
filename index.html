@@ -128,9 +128,9 @@
       border-radius: 15px;
       object-fit: cover;
       box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-      max-height: 700px; /* Ajustable selon vos besoins */
       transform: translateX(0); 
       transition: transform 0.3s ease-out;
+      /* La hauteur sera contrôlée dynamiquement par JavaScript */
     }
 
     /* Responsive adjustments */
@@ -301,6 +301,30 @@
         });
       });
     });
+
+    // Ajustement de la hauteur de l'image pour qu'elle s'aligne avec le bas du titre de la cagnotte
+    function adjustImageHeight() {
+      const image = document.getElementById('coupleImage');
+      const cagnotteTitle = document.querySelector('.cagnotte-section h2');
+      
+      if (image && cagnotteTitle) {
+        // Position du bas du titre de la cagnotte par rapport au haut de la page
+        const cagnotteTitleBottom = cagnotteTitle.getBoundingClientRect().bottom + window.scrollY;
+        
+        // Position du haut de l'image par rapport au haut de la page
+        const imageTop = image.getBoundingClientRect().top + window.scrollY;
+        
+        // Calcul de la hauteur nécessaire pour que le bas de l'image s'aligne avec le bas du titre
+        const newHeight = cagnotteTitleBottom - imageTop;
+        
+        // Application de la hauteur
+        image.style.height = newHeight + 'px';
+      }
+    }
+
+    // Appliquer l'ajustement au chargement et au redimensionnement
+    window.addEventListener('load', adjustImageHeight);
+    window.addEventListener('resize', adjustImageHeight);
 
     // Effet de parallaxe horizontal sur l'image en scrollant
     document.addEventListener('scroll', function() {
