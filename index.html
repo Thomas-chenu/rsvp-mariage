@@ -35,6 +35,7 @@
       flex: 1;
       text-align: left;
       padding-left: 5%;
+      padding-right: 20px;
     }
     .left-section h3 {
       font-size: 1.5em;
@@ -103,10 +104,14 @@
 
     /* ------ Image ------ */
     .image-container {
-      width: 100%;            /* S'adapte en largeur */
+      flex: 1;                /* Pour rester sur la même ligne que la section de gauche : */
+      max-width: 100%;            /* S'adapte en largeur */
       height: 500px;          /* Hauteur fixe, à ajuster selon vos besoins */
       position: relative;     
       overflow: hidden;       /* Masque l'image qui déborde */
+      border-radius: 15px;    /* Angles arrondis */
+      margin-left: auto;      /* Facultatif : aligne à droite si souhaité */
+      margin-right: auto;    /* Vous pouvez ajuster le centrage / alignement */
       margin-bottom: 30px;    /* Pour l'exemple, si vous voulez un espace en bas */
       border: 2px solid #ccc; /* Visuel optionnel pour voir le cadre */
     }
