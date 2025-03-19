@@ -103,23 +103,23 @@
 
     /* ------ Image ------ */
     .image-container {
-      flex: 1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: relative;
-      overflow: hidden;  /* Masque les parties de l'image qui débordent */
-      /* Vous pouvez fixer une hauteur ou utiliser d'autres unités selon vos besoins */
-      height: 400px;  /* Exemple : définir une hauteur fixe pour le cadre */
+      width: 100%;            /* S'adapte en largeur */
+      height: 500px;          /* Hauteur fixe, à ajuster selon vos besoins */
+      position: relative;     
+      overflow: hidden;       /* Masque l'image qui déborde */
+      margin-bottom: 30px;    /* Pour l'exemple, si vous voulez un espace en bas */
+      border: 2px solid #ccc; /* Visuel optionnel pour voir le cadre */
     }
 
     .image-container img {
-      /* On agrandit l'image pour permettre le déplacement sans laisser de vide */
-      transform: scale(1.2) translateX(0);
-      transition: transform 0.5s ease-in-out;
-      /* Vous pouvez définir la largeur ou la hauteur selon ce qui convient le mieux */
-      width: 100%;
-      height: 100%;  /* L'image remplira verticalement le conteneur */
+      position: absolute;  /* Permet de la déplacer librement */
+      top: 0;
+      left: 0;
+      width: 120%;         /* Plus large que le conteneur, pour qu'elle déborde */
+      height: auto;        
+      object-fit: cover;   /* Garde un ratio correct si vous fixez aussi la hauteur */
+      transform: translateX(0); 
+      transition: transform 0.3s ease-out; /* Animation douce sur le mouvement */
     }
   </style>
 
