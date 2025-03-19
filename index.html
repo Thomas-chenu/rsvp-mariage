@@ -279,10 +279,10 @@
 
     // Effet de parallaxe horizontal sur l'image en scrollant
     document.addEventListener('scroll', function() {
-      let scrollPosition = window.scrollY;
-      let image = document.getElementById('imageContainer').querySelector('img');
+      const scrollPosition = window.scrollY;
+      const image = document.querySelector('#imageContainer img');
       // On applique le scale puis la translation sur l'axe X
-      image.style.transform = `scale(1.1) translateX(${scrollPosition * 0.1}px)`;
+      image.style.transform = `translateX(${scrollPosition * 0.1}px)`;
     });
 
     // Lorsque le formulaire est soumis, afficher un message de remerciement et envoyer les données vers Google Apps Script
